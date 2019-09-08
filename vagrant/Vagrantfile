@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "../../../Git", "/home/docker/git"
   config.vm.synced_folder "#{Dir.home}/.m2", "/home/docker/.m2"
   config.vm.synced_folder "./", "/home/docker/"
-#  config.vm.provision "shell", inline: <<-SHELL
-#    source /vagrant/vagrant/install.sh; provision
-#  SHELL
+  config.vm.provision "shell", inline: <<-SHELL
+    source /vagrant/vagrant/install.sh; provision
+  SHELL
 end
