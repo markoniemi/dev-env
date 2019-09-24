@@ -9,12 +9,17 @@ Vagrant.configure("2") do |config|
 	vb.name = "dev-env"
   end
   # login with docker/tcuser
-  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  for i in 8080..8090
+    config.vm.network :forwarded_port, guest: i, host: i
+  end
   config.vm.synced_folder "./", "/vagrant", disabled: true
   config.vm.synced_folder "../../../Git", "/home/docker/git"
   config.vm.synced_folder "#{Dir.home}/.m2", "/home/docker/.m2"
   config.vm.synced_folder "./", "/home/docker/"
+  config.ssh.username = "docker"
+  config.ssh.password = "tcuser"
+#  config.vm.provision "shell", path: "install.sh"
   config.vm.provision "shell", inline: <<-SHELL
-    source /vagrant/vagrant/install.sh; provision
+    export PATH="$PATH:/home/docker/scripts"
   SHELL
 end
