@@ -1,6 +1,4 @@
-#!/bin.sh
-# https://gist.github.com/bogdanRada/e5d0a7a3a649cbb363f0237e67b5169c
-install_docker_compose() {
+install_docker_compose () {
 
 DOCKER_COMPOSE_VERSION=1.21.2
 
@@ -22,3 +20,5 @@ sudo chmod +x /var/lib/boot2docker/bootlocal.sh
 echo 'Launching docker-compose...'
 docker-compose --version
 }
+
+install_docker_compose

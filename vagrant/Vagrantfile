@@ -12,6 +12,7 @@ Vagrant.configure("2") do |config|
   for i in 8080..8090
     config.vm.network :forwarded_port, guest: i, host: i
   end
+    config.vm.network :forwarded_port, guest: 8761, host: 8761
   config.vm.synced_folder "./", "/vagrant", disabled: true
   config.vm.synced_folder "../../../Git", "/home/docker/git"
   config.vm.synced_folder "#{Dir.home}/.m2", "/home/docker/.m2"
