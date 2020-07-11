@@ -5,5 +5,3 @@ docker run \
 -w /usr/src \
 maven:3.6-jdk-8-alpine \
 mvn $*
-
-#zenika/alpine-maven:3-jdk8 \
