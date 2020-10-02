@@ -8,8 +8,8 @@ provision () {
 #  source ~/.bashrc
   enable_edge
   install_sudo
-  install_docker
-  install_docker_compose
+#  install_docker
+#  install_docker_compose
   #disable_docker_tls
 }
 
