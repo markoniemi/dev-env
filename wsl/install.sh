@@ -1,22 +1,20 @@
-#!/bin.sh
 set -e
-source install-docker.sh
-source install-docker-compose.sh
-#source /home/docker/git/dev-env/wsl/disable-docker-tls.sh
 
 provision () {
-#  source ~/.bashrc
-  enable_edge
+  enable_alpine_repositories
+  upgrade_alpine
   install_sudo
-#  install_docker
-#  install_docker_compose
-  #disable_docker_tls
+  apk add docker docker-compose kubectl helm
 }
 
-enable_edge() {
+enable_alpine_repositories() {
   echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' > /etc/apk/repositories
   echo 'http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
   echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing/' >> /etc/apk/repositories
+}
+
+upgrade_alpine() {
+  apk upgrade -U -a
 }
 
 install_sudo() {
