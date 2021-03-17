@@ -5,6 +5,8 @@ provision () {
   upgrade_alpine
   install_sudo
   apk add docker docker-compose kubectl helm
+  apk add maven openjdk8
+  source install-k3d.sh
 }
 
 enable_alpine_repositories() {
