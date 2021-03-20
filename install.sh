@@ -16,6 +16,7 @@ provision() {
   echo install jdk
   apk add openjdk8
   install_k3d
+  ln -s /mnt/c/Users/marko/Documents/Git/ git
 }
 
 enable_alpine_repositories() {
