@@ -16,6 +16,7 @@ provision() {
   echo install jdk
   apk add openjdk8
   install_k3d
+  install_k3s
   ln -s /mnt/c/Users/marko/Documents/Git/ git
 }
 
@@ -62,5 +63,12 @@ install_k3d() {
   wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | ash
 }
 
+install_k3s() {
+  echo install k3s
+#  sudo apk add k3s
+  curl -O -fsSL https://github.com/k3s-io/k3s/releases/download/v1.21.0%2Bk3s1/k3s
+  mv k3s /usr/bin/k3s
+  chmod a+x /usr/bin/k3s
+}
 provision
 
