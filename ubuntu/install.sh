@@ -3,11 +3,18 @@ set -e
 
 # enable guest additions on command line 
 install_guest_additions() {
+  sudo apt update
+  # not necessary?
+#  sudo apt-get install build-essential gcc make perl dkms
+  sudo apt install -y build-essential linux-headers-$(uname -r)
   sudo mkdir -p /mnt/cdrom
   sudo mount /dev/cdrom /mnt/cdrom
   cd /mnt/cdrom
   sudo apt-get install bzip2
   sudo sh ./VBoxLinuxAdditions.run
+  sudo usermod -G vboxsf -a niemimac
+# logoff after usermod
+# reboot, add a shared folder
 }
 
 
