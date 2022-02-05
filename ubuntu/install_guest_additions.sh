@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# wget -O https://raw.githubusercontent.com/markoniemi/dev-env/master/ubuntu/install_guest_additions.sh | bash 
+# bash <(curl -s https://raw.githubusercontent.com/markoniemi/dev-env/master/ubuntu/install_guest_additions.sh) 
 
 # enable guest additions on command line 
 install_guest_additions() {
@@ -15,3 +15,5 @@ install_guest_additions() {
   sudo reboot
 # add a shared folder after reboot
 }
+
+install_guest_additions
