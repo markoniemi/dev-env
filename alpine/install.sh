@@ -1,23 +1,45 @@
 set -e
 
 provision() {
+  fix_network
+  fix_wsl
   enable_alpine_repositories
   upgrade_alpine
   install_sudo
+#  add_user
   install_docker
   echo install docker-compose
   apk add docker-compose 
-  echo install kubectl
-  apk add kubectl 
-  echo install helm
-  apk add helm
+  echo install curl
+  apk add curl
+#  echo install kubectl
+#  apk add kubectl 
+#  echo install helm
+#  apk add helm
   echo install maven
   apk add maven 
   echo install jdk
   apk add openjdk8
-  install_k3d
+#  install_k3d
   install_k3s
-  ln -s /mnt/c/Users/marko/Documents/Git/ git
+  install_k9s
+  ln -s /mnt/c/Users/maniemi/Documents/Git/ git
+}
+
+fix_network() {
+  echo add wsl.cof
+  echo -e '[network]\ngenerateResolvConf = false' > /etc/wsl.conf
+  echo fix resolv.conf
+  rm /etc/resolv.conf
+  echo -e 'nameserver 8.8.8.8' > /etc/resolv.conf
+}
+
+fix_wsl() {
+  #these commands are executed by ms Alpine after install
+  /bin/chmod 755 /
+  /sbin/apk --no-cache add shadow
+  /sbin/apk --no-cache add alpine-base
+  /bin/sed -i 's/^export PATH/#export PATH/' /etc/profile
 }
 
 enable_alpine_repositories() {
@@ -42,7 +64,7 @@ install_sudo() {
 install_docker() {
   echo install docker
   apk add docker
-  addgroup -S niemimac docker
+#  addgroup -S niemimac docker
   dockerd &> /dev/null &
   sleep 5
   chown -R root:docker /var/run/docker
@@ -65,10 +87,15 @@ install_k3d() {
 
 install_k3s() {
   echo install k3s
+  curl -sfL https://get.k3s.io | sudo sh -
 #  sudo apk add k3s
-  curl -O -fsSL https://github.com/k3s-io/k3s/releases/download/v1.21.0%2Bk3s1/k3s
-  mv k3s /usr/bin/k3s
-  chmod a+x /usr/bin/k3s
+#  curl -O -fsSL https://github.com/k3s-io/k3s/releases/download/v1.24.1%2Bk3s1/k3s
+#  mv k3s /usr/bin/k3s
+#  chmod a+x /usr/bin/k3s
+}
+
+install_k9s() {
+  curl -O -fsSL https://github.com/derailed/k9s/releases/download/v0.25.18/k9s_Linux_x86_64.tar.gz
+  tar x -f k9s_Linux_x86_64.tar.gz -C /usr/local/bin/
 }
 provision
-
