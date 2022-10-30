@@ -19,11 +19,11 @@ provision() {
   echo install maven
   apk add maven 
   echo install jdk
-  apk add openjdk8
+  apk add openjdk11
 #  install_k3d
   install_k3s
   install_k9s
-  ln -s /mnt/c/Users/maniemi/Documents/Git/ git
+  ln -s /mnt/c/Users/marko/Documents/Git/ git
 }
 
 fix_network() {
