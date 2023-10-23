@@ -2,20 +2,20 @@
 set -e
 
 provision() {
-#  fix_network
-#  add_sudoers
-#  install_java
-#  install_eclipse
-#  install_lombok
+  fix_network
+  add_sudoers
+  install_java
+  install_eclipse
+  install_lombok
   install_chrome
-#  install_docker
-#  install_helm
-#  install_k9s
+  install_docker
+  install_helm
+  install_k9s
 }
 
 fix_network() {
   echo add wsl.conf
-  echo -e '\n[network]\ngenerateResolvConf = false' > /etc/wsl.conf
+  echo -e '\n[network]\ngenerateResolvConf = false' >> /etc/wsl.conf
   echo fix resolv.conf
   rm /etc/resolv.conf
   echo -e 'nameserver 8.8.8.8' > /etc/resolv.conf
