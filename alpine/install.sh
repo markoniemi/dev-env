@@ -8,8 +8,8 @@ provision() {
   install_sudo
 #  add_user
   install_docker
-  echo install docker-compose
-  apk add docker-compose 
+#  echo install docker-compose
+#  apk add docker-compose 
   echo install curl
   apk add curl
 #  echo install kubectl
@@ -21,8 +21,8 @@ provision() {
   echo install jdk
   apk add openjdk11
 #  install_k3d
-  install_k3s
-  install_k9s
+#  install_k3s
+#  install_k9s
   ln -s /mnt/c/Users/marko/Documents/Git/ git
 }
 
@@ -68,6 +68,7 @@ install_docker() {
   dockerd &> /dev/null &
   sleep 5
   chown -R root:docker /var/run/docker
+  addgroup niemimac docker
 }
 
 #install docker-compose as a container, not used anymore
