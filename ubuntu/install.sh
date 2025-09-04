@@ -15,7 +15,7 @@ provision() {
 
 fix_network() {
   echo add wsl.conf
-  echo -e '\n[network]\ngenerateResolvConf = false' >> /etc/wsl.conf
+  echo -e '\n[network]\ngenerateResolvConf = false' > /etc/wsl.con
   echo fix resolv.conf
   rm /etc/resolv.conf
   echo -e 'nameserver 8.8.8.8' > /etc/resolv.conf
